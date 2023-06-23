@@ -1,0 +1,3 @@
+0 0 * * * pkill -f '/home/vahid/goreplay/goreplay'
+1 0 * * * /home/vahid/config-learner/replay_traffic.sh 2 >> /home/vahid/logs/crontab_log_2_days_ago.txt 2>&1
+1 0 * * * /home/vahid/config-learner/replay_traffic.sh 1 >> /home/vahid/logs/crontab_log_1_days_ago.txt 2>&1

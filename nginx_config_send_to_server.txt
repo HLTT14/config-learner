@@ -1,0 +1,13 @@
+# https://serverfault.com/questions/241588/how-to-automate-ssh-login-with-password
+
+ssh-keygen
+ssh-copy-id -p 24900 hossein@itc-data-5.myket.ir
+
+# for copying a file to remote server (which you have set your ssh key on it previously), run this command
+scp -P 24900 ./test.txt hossein@itc-data-5.myket.ir:/home/hossein
+
+# for copying files in a directory to remote server
+scp -P 24900 -r ./folder/  hossein@itc-data-5.myket.ir:/home/hossein
+
+# for sending nginx config files to remote server and reloading it
+scp -P 24900 -r ./nginx-configs/* hossein@itc-data-5.myket.ir:/etc/nginx && ssh -p 24900 hossein@itc-data-5.myket.ir "sudo nginx -t && sudo service nginx reload" &>> config_sender_logs.txt

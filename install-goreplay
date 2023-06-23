@@ -1,0 +1,37 @@
+export http_proxy=http://mir-lb-1.myket.ir:8118
+export https_proxy=http://mir-lb-1.myket.ir:8118
+
+wget https://go.dev/dl/go1.19.5.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.19.5.linux-amd64.tar.gz 
+
+vim ~/.profile 
+# At the end of the file, paste the following line:
+export PATH=$PATH:/usr/local/go/bin
+
+# To confirm Go is installed on the machine, run 
+go version
+
+https://github.com/buger/goreplay/wiki/Compilation
+
+apt-get update && apt-get install ruby vim-common -y
+apt-get install flex bison -y
+
+wget http://www.tcpdump.org/release/libpcap-1.10.0.tar.gz 
+tar xzf libpcap-1.10.0.tar.gz
+cd libpcap-1.10.0 
+./configure 
+make install
+
+
+# on server
+mkdir goreplay
+
+# on local
+git:(master) scp -P 24900 -r ./* vahid@azd-tempstor-2.myket.ir:/home/vahid/goreplay
+
+
+# on server 
+cd goreplay
+go get
+
+go build -ldflags "-extldflags \"-static\""
